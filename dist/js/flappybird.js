@@ -48,6 +48,11 @@ fly.src = "dist/audio/fly.wav";
 
 scor.src = "dist/audio/score.wav";
 
+function bunyi() {
+  var sound = new Audio("dist/audio/backsound.mp3");
+  sound.play();
+}
+
 // on key down
 
 document.addEventListener("keydown", moveUp);
