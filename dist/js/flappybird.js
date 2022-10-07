@@ -6,23 +6,23 @@ var ctx = cvs.getContext("2d");
 
 var bird = new Image();
 
-var bg = new Image();
+var bg1 = new Image();
 
 var fg = new Image();
 
-var pipeNorth = new Image();
+var pipenorth = new Image();
 
-var pipeSouth = new Image();
+var pipesouth = new Image();
 
-bird.src = "bird.png";
+bird.src = "dist/img/bird.png";
 
-bg.src = "bg.png";
+bg1.src = "dist/img/bg1.png";
 
-fg.src = "images/fg.png";
+fg.src = "dist/img/fg.png";
 
-pipeNorth.src = "images/pipeNorth.png";
+pipenorth.src = "dist/img/pipenorth.png";
 
-pipeSouth.src = "images/pipeSouth.png";
+pipesouth.src = "dist/img/pipesouth.png";
 
 // some variables
 
@@ -44,9 +44,9 @@ var fly = new Audio();
 
 var scor = new Audio();
 
-fly.src = "sounds/fly.mp3";
+fly.src = "dist/audio/fly.wav";
 
-scor.src = "sounds/score.mp3";
+scor.src = "dist/audio/score.wav";
 
 // on key down
 
@@ -71,14 +71,14 @@ pipe[0] = {
 // draw images
 
 function draw() {
-  ctx.drawImage(bg, 0, 0);
+  ctx.drawImage(bg1, 0, 0);
 
   for (var i = 0; i < pipe.length; i++) {
-    constant = pipeNorth.height + gap;
+    constant = pipenorth.height + gap;
 
-    ctx.drawImage(pipeNorth, pipe[i].x, pipe[i].y);
+    ctx.drawImage(pipenorth, pipe[i].x, pipe[i].y);
 
-    ctx.drawImage(pipeSouth, pipe[i].x, pipe[i].y + constant);
+    ctx.drawImage(pipesouth, pipe[i].x, pipe[i].y + constant);
 
     pipe[i].x--;
 
@@ -86,7 +86,7 @@ function draw() {
       pipe.push({
         x: cvs.width,
 
-        y: Math.floor(Math.random() * pipeNorth.height) - pipeNorth.height,
+        y: Math.floor(Math.random() * pipenorth.height) - pipenorth.height,
       });
     }
 
@@ -94,8 +94,8 @@ function draw() {
 
     if (
       (bX + bird.width >= pipe[i].x &&
-        bX <= pipe[i].x + pipeNorth.width &&
-        (bY <= pipe[i].y + pipeNorth.height ||
+        bX <= pipe[i].x + pipenorth.width &&
+        (bY <= pipe[i].y + pipenorth.height ||
           bY + bird.height >= pipe[i].y + constant)) ||
       bY + bird.height >= cvs.height - fg.height
     ) {
